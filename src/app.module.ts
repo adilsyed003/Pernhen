@@ -7,7 +7,7 @@ import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 
 @Module({
-  imports: [CobbDailyModule],
+  imports: [CobbDailyModule,AuthModule,UserModule,PrismaModule],
   controllers: [AppController],
   providers: [AppService],
 })
