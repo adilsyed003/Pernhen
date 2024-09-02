@@ -11,9 +11,10 @@ import { JwtModule } from '@nestjs/jwt';
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: 'yourSecretKey', // Replace with an environment variable in production
+      secret: 'yourSecretKey',
       signOptions: { expiresIn: '60m' },
     }),
+    PrismaService,
   ],
   providers: [AuthService, JwtStrategy, PrismaService, UserService],
   controllers: [AuthController],
