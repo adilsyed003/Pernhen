@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "mongodb"
-  url      = "mongodb+srv://Pernhen_Admin1:ownerpern19915@cluster0.k5rcx.mongodb.net/pernhen?retryWrites=true&w=majority"
+  url      = env("DATABASE_URL")
 }
 
 model CobbDaily {

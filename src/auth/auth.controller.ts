@@ -4,6 +4,7 @@ import {
   HttpException,
   HttpStatus,
   Post,
+  Get,
   Request,
   UseGuards,
 } from '@nestjs/common';
@@ -22,7 +23,7 @@ export class AuthController {
     return 'Hello';
   }
   @Post('login')
-  // @UseGuards(LocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   async login(@Body() loginUserDto: LoginUserDto) {
     const user = await this.authService.validateUser(
       loginUserDto.email,
@@ -74,6 +75,7 @@ export class AuthController {
   }
 
   @Post('profile')
+  @UseGuards(JwtAuthGuard)
   getProfile(@Request() req) {
     return req.user;
   }
