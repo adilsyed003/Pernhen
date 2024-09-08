@@ -110,5 +110,12 @@ export class AuthService {
   async requestsdetails(){
     return await this.prisma.requests.findMany({});
   }
-  
+
+  async getuserdetails(authHeader:string){
+    const token = authHeader.split(' ')[1];
+    const decodedToken = this.jwtService.verify(token);
+    const userId = decodedToken.sub; 
+    const user = await this.userService.findOneById(userId);
+    return user;
+  }
 }

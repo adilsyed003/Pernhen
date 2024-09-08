@@ -1,10 +1,11 @@
-import { Body, Controller, HttpException, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post, Request, UseGuards,Headers } from '@nestjs/common';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './local-auth.guard';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { ReqUserDto } from './dto/request.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('auth')
 export class AuthController {
@@ -56,6 +57,14 @@ export class AuthController {
       reqDto.password,
       reqDto.role
     )
+  }
+
+  
+
+  @UseGuards(AuthGuard)
+  @Get('user-details')
+  async getUserDetails(@Headers('authorization') authHeader: string) {
+  
   }
 
   @Post('profile')
