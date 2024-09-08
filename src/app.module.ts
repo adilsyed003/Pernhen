@@ -6,7 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 
 @Module({
-  imports: [CobbDailyModule, AuthModule, UserModule],
+  imports: [CobbDailyModule, AuthModule, UserModule, PrismaModule],
   controllers: [AppController],
   providers: [AppService],
 })
