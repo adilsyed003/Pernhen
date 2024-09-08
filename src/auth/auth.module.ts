@@ -12,7 +12,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
     PassportModule,
     JwtModule.register({
       secret: 'yourSecretKey', // Replace with an environment variable in production
-      signOptions: { expiresIn: '60m' },
+      signOptions: { expiresIn: '60h' },
     }),
   ],
   providers: [AuthService, JwtStrategy,PrismaService, UserService],
