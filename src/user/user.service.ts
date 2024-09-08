@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { Role } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
 
-
 @Injectable()
 export class UserService {
   constructor(private prisma: PrismaService) {}
@@ -19,7 +18,7 @@ export class UserService {
       data: {
         email,
         password,
-        role
+        role,
       },
     });
   }
