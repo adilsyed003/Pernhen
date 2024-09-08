@@ -2,7 +2,7 @@ import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
-export class AuthGuard implements CanActivate {
+export class AuthGuards implements CanActivate {
   constructor(private readonly jwtservice:JwtService){}
 
   canActivate(context: ExecutionContext): boolean  {

@@ -7,14 +7,15 @@ import {
   Get,
   Request,
   UseGuards,
+  Headers,
 } from '@nestjs/common';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
-import { LocalAuthGuard } from './local-auth.guard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { ReqUserDto } from './dto/request.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuards } from './guards/auth-guard';
 
 @Controller('auth')
 export class AuthController {
@@ -75,10 +76,19 @@ export class AuthController {
     );
   }
 
-  
+  @Get('request/all')
+  async getallrequests(){
+    return this.authService.requestsdetails();
+  }
+
+  @UseGuards(AuthGuards)
+  @Get('user-details')
+  async getUserDetails(@Headers('authorization') authHeader: string) {
+  return this.authService.getuserdetails(authHeader)
+  }
 
   @Post('profile')
-  @UseGuards(JwtAuthGuard)
+ // @UseGuards(JwtAuthGuard)
   getProfile(@Request() req) {
     return req.user;
   }
