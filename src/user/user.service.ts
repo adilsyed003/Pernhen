@@ -8,12 +8,14 @@ export class UserService {
   async findOneByEmail(email: string) {
     return this.prisma.user.findUnique({ where: { email } });
   }
-  async findOneById(id:string){
-    return this.prisma.user.findUnique({where:{
-      id:id
-    }})
+  async findOneById(id: string) {
+    return this.prisma.user.findUnique({
+      where: {
+        id: id,
+      },
+    });
   }
-  async createUser(email: string, password: string,role:Role) {
+  async createUser(email: string, password: string, role: Role) {
     return this.prisma.user.create({
       data: {
         email,
@@ -21,5 +23,8 @@ export class UserService {
         role,
       },
     });
+  }
+  async findAll() {
+    return this.prisma.user.findMany();
   }
 }
