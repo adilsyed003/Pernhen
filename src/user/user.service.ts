@@ -25,6 +25,11 @@ export class UserService {
     });
   }
   async findAll() {
-    return this.prisma.user.findMany();
+    try{
+      return  this.prisma.user.findMany({})
+    }
+    catch(err){
+      console.log("Error: " + err)
+    }
   }
 }
