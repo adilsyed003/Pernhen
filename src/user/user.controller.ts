@@ -9,8 +9,5 @@ export class UserController {
     async findAll(){
         return this.userservice.findAll();
     }
-    @Post('addUser')
-    async createUser(@Body() userdto:CreateUserDto){
-        return this.userservice.createUser(userdto);
-    }
+    
 }
